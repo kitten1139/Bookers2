@@ -1,24 +1,81 @@
-<h2>User info</h2>
 
-  <p>name</p>
-  
-
-  <p>Image</p>
-  
-  <p>Introduction</p>
+<div class="container px-5 px-sm-0">
   
   
+  <div class="row">
+    <div class="col-lg-3">
+      <h2>User info</h2>
+      
+        <% if @user.profile_image.attached? %>
+          <%= image_tag user_profile_image, size: "100x100" %>
+        <% else %>
+          <%= image_tag 'no_image', size: "100x100" %>
+        <% end %>
+        
 
-<h2>New book</h2>
+      <table>
+        <tr class="border-top">
+          <td>name</td>
+          <td><%= @user.name %></td>
+        </tr>
 
-  <%= form_with model: @book do |f| %>
+        <tr class="border-top">
+          <td>Introduction</td>
+          <td><%= @user.introduction %></td>
+        </tr>
+      </table>
 
-    <p>Title</p>
-    <%= f.text_field :title %>
 
-    <p>Opinion</p>
-    <%= f.text_area :body %><br>
+      <%=link_to edit_user_path(@user), class: "btn btn-sm btn-light w-50 mt-5 mb-3" do %>
+        <i class="fa-solid fa-user-gear"></i>
+      <% end %>
 
-    <%= f.submit 'Create Book' %>
+      <h2>New book</h2>
 
-  <% end %>
+        <%= form_with model: @book do |f| %>
+
+        <p>Title</p>
+        <%= f.text_field :title %>
+
+        <p>Opinion</p>
+        <%= f.text_area :body %><br>
+
+        <button class="btn btn-success" type="submit">Create Book</button>
+
+        <% end %>
+    </div>
+
+    <div class="col-lg-9">
+      <h2>Books</h2>
+      <table>
+       <thead>
+        <tr>
+          <th></th>
+          <th>Title</th>
+          <th>Opinion</th>
+          <th></th>
+          <th></th>
+        </tr>
+       </thead>
+  
+  
+      <% @books.each do |book| %>
+       <tbody>
+        <tr>
+          <td>
+            <% link_to user_path(@books.user.id) do %>
+              <%= image_tag @books.user_profile_image, size: "100x100" %>
+            <% end %>
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+       </tbody>
+      
+      <% end %>
+      </table>
+  
+    </div>
+  </div>
+</div>
+
