@@ -25,30 +25,30 @@
             <% if user_signed_in? %>
 
             <li class="nav-item">
-              <%= link_to "Home", user_path(current_user.id), class: 'nav-link text-white' %>
+              <%= link_to "Home", user_path(current_user.id), class: 'nav-link text-light' %>
             </li>
             <li class="nav-item">
-              <%= link_to "Users", users_path, class: 'nav-link text-white' %>
+              <%= link_to "Users", users_path, class: 'nav-link text-light' %>
             </li>
             <li class="nav-item">
-              <%= link_to "Books", books_path, class: 'nav-link text-white' %>
+              <%= link_to "Books", books_path, class: 'nav-link text-light' %>
             </li>
             <li class="nav-item">
-              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'nav-link text-white' %>
+              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'nav-link text-light' %>
             </li>
 
             <% else %>
             <li class="nav-item">
-              <%= link_to "Home", '/', class: 'nav-link text-dark' %>
+              <%= link_to "Home", '/', class: 'nav-link text-light' %>
             </li>
             <li class="nav-item">
-              <%= link_to "About", about_path, class: 'nav-link text-dark' %>
+              <%= link_to "About", about_path, class: 'nav-link text-light' %>
             </li>
             <li class="nav-item">
-              <%= link_to "Sign Up", new_user_registration_path, class: 'nav-link text-dark' %>
+              <%= link_to "Sign Up", new_user_registration_path, class: 'nav-link text-light' %>
             </li>
             <li class="nav-item">
-              <%= link_to "Log in", new_user_session_path, class: 'nav-link text-dark' %>
+              <%= link_to "Log in", new_user_session_path, class: 'nav-link text-light' %>
             </li>
             <% end %>
             </ul>

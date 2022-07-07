@@ -1,31 +1,79 @@
-<h2>User info</h2>
+<div class="container">
 
 
+  <div class="row">
+    <div class="col-3">
+      <h2>User info</h2>
 
-<p>Image</p>
-<table>
-  <tr>
-    <td><p>name</p></td>
-  </tr>
-
-  <tr>
-    <td><p>Introduction</p></td>
-  </tr>
-</table>
+        <% if @user.profile_image.attached? %>
+          <%= image_tag user_profile_image, size: "100x100" %>
+        <% else %>
+          <%= image_tag 'no_image', size: "100x100" %>
+        <% end %>
 
 
+      <table class="table">
+        <tr>
+          <td>name</td>
+          <td><%= @user.name %></td>
+        </tr>
 
-<h2>New book</h2>
+        <tr>
+          <td>Introduction</td>
+          <td><%= @user.introduction %></td>
+        </tr>
+      </table>
 
-  <%= form_with model: @book do |f| %>
+      <%=link_to edit_user_path(@user), class: "btn btn-sm btn-light w-50 mt-5 mb-3" do %>
+        <i class="fa-solid fa-user-gear"></i>
+      <% end %>
 
-    <p>Title</p>
-    <%= f.text_field :title %>
+      <h2>New book</h2>
 
-    <p>Opinion</p>
-    <%= f.text_area :body %><br>
+        <%= form_with model: @book do |f| %>
 
-    <%= f.submit 'Create Book' %>
+        <p>Title</p>
+        <%= f.text_field :title %>
 
-  <% end %>
+        <p>Opinion</p>
+        <%= f.text_area :body %><br>
+
+        <button class="btn btn-success" type="submit">Create Book</button>
+
+        <% end %>
+    </div>
+
+    <div class="col-8 offset-1">
+      <h2>Books</h2>
+      <table class="table table-hover">
+       <thead>
+        <tr>
+          <th>image</th>
+          <th>name</th>
+          <th></th>
+        </tr>
+       </thead>
+
+     <% @users.each do |user| %>
+       <tbody>
+        <tr>
+          <td>
+              <% if user.profile_image.attached? %>
+                <%= image_tag user_profile_image, size: "100x100" %>
+              <% else %>
+                <%= image_tag 'no_image', size: "100x100" %>
+              <% end %>
+          </td>
+          <td><%= user.name %></td>
+          <td><%= link_to "show", user_path(user.id) %></td>
+        </tr>
+       </tbody>
+      <% end %>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+
 
