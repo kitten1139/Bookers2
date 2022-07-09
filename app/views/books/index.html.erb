@@ -60,8 +60,8 @@
        <tbody>
         <tr>
           <td>
-              <% if @user.profile_image.attached? %>
-                <%= image_tag user_profile_image, size: "100x100" %>
+              <% if book.user.profile_image.attached? %>
+                <%= image_tag book.user.profile_image, size: "100x100" %>
               <% else %>
                 <%= image_tag 'no_image', size: "100x100" %>
               <% end %>
